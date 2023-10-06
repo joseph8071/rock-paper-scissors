@@ -152,7 +152,6 @@ pycountry==22.3.5
 pycparser==2.21
 pydantic==1.10.12
 pyflakes==3.1.0
-pygame==2.1.2
 Pygments==2.16.1
 pylatexenc==2.10
 pymdown-extensions==10.3
