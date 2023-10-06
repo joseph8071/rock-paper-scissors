@@ -4,6 +4,7 @@ import numpy as np
 import cv2
 import random
 from game import decide_winner, get_computer_move
+import os
 
 
 app = Flask(__name__)
