@@ -1,7 +1,7 @@
 absl-py==1.4.0
 abstract_singleton==1.0.1
 agbenchmark==0.0.2
-agent-protocol==0.3.0
+agent-protocol==1.0.1
 aiofiles==23.2.1
 aiohttp==3.8.5
 aiosignal==1.2.0
