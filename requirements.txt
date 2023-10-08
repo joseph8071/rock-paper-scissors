@@ -140,7 +140,7 @@ priority==2.0.0
 promise==2.3
 prompt-toolkit==3.0.39
 proto-plus==1.22.3
-protobuf==4.21.6
+protobuf==4.20.3
 psutil==5.9.5
 ptyprocess==0.7.0
 py==1.11.0
