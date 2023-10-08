@@ -50,7 +50,7 @@ exceptiongroup==1.0.4
 execnet==2.0.2
 facebook-business==16.0.2
 fastapi==0.100.1
-filelock==3.12.3
+filelock==3.0.12
 flake8==6.1.0
 Flask==3.0.0
 flatbuffers==23.5.26
