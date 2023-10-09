@@ -1,31 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rock Paper Scissors Game</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="script.js" defer></script>
+    <title>Rock Paper Scissors</title>
 </head>
 <body>
 
-<div class="container">
-    <h1>Rock Paper Scissors Game</h1>
+<video id="video" width="150" height="150" autoplay></video>
+<button onclick="captureFrame()">Play</button>
+
+<script>
+    var video = document.getElementById('video');
+
+    // Get access to the camera
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream) {
+            video.srcObject = stream;
+            video.play();
+        });
+    }
+
+    function captureFrame() {
+    var canvas = document.createElement('canvas');
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+    var context = canvas.getContext('2d');
+    context.drawImage(video, 0, 0);
     
-    <h2>Show your move to the webcam!</h2>
-    <p>Press the button below to start.</p>
+    // Convert the frame to a base64 encoded string
+    var imageData = canvas.toDataURL('image/png');
+    var jsonData = {
+        "image": imageData
+    };
 
-    <form action="/predict" method="post" enctype="multipart/form-data">
-        <input type="file" name="file" accept="image/*" required>
-        <button type="submit">Predict</button>
-    </form>
+    fetch('/predict', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(jsonData)
+    }).then(response => response.json()).then(data => {
+        console.log(data);
+        console.log(`User Move: ${data.user_move}\nComputer Move: ${data.computer_move}\nResult: ${data.result}`);
+    });
+}
 
-    <div id="results">
-        <h2>Your Move: <span id="user-move"></span></h2>
-        <h2>Computer's Move: <span id="computer-move"></span></h2>
-        <h2>Result: <span id="result"></span></h2>
-    </div>
-</div>
+
+</script>
 
 </body>
 </html>
